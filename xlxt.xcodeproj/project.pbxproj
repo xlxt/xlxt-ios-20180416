@@ -232,51 +232,195 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		523871412056594B005DFF7B /* class */ = {
+		5238714C205660A8005DFF7B /* class */ = {
 			isa = PBXGroup;
 			children = (
-				523871422056594B005DFF7B /* Controller */,
-				523871432056594B005DFF7B /* DB */,
-				523871442056594B005DFF7B /* Model */,
-				523871452056594B005DFF7B /* Others */,
-				523871462056594B005DFF7B /* Views */,
+				5238714D205660A8005DFF7B /* Controller */,
+				52387152205660A8005DFF7B /* Model */,
+				52387158205660A8005DFF7B /* Others */,
+				5238715E205660A8005DFF7B /* Views */,
 			);
 			path = class;
 			sourceTree = "<group>";
 		};
-		523871422056594B005DFF7B /* Controller */ = {
+		5238714D205660A8005DFF7B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5238714E205660A8005DFF7B /* Enteprise */,
+				5238714F205660A8005DFF7B /* Home */,
+				52387150205660A8005DFF7B /* Live */,
+				52387151205660A8005DFF7B /* Personal */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		523871432056594B005DFF7B /* DB */ = {
+		5238714E205660A8005DFF7B /* Enteprise */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = DB;
+			path = Enteprise;
 			sourceTree = "<group>";
 		};
-		523871442056594B005DFF7B /* Model */ = {
+		5238714F205660A8005DFF7B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		52387150205660A8005DFF7B /* Live */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		52387151205660A8005DFF7B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		52387152205660A8005DFF7B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52387153205660A8005DFF7B /* Enteprise */,
+				52387154205660A8005DFF7B /* Home */,
+				52387155205660A8005DFF7B /* Live */,
+				52387156205660A8005DFF7B /* Personal */,
+				52387157205660A8005DFF7B /* Public */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		523871452056594B005DFF7B /* Others */ = {
+		52387153205660A8005DFF7B /* Enteprise */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Enteprise;
+			sourceTree = "<group>";
+		};
+		52387154205660A8005DFF7B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		52387155205660A8005DFF7B /* Live */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		52387156205660A8005DFF7B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		52387157205660A8005DFF7B /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		52387158205660A8005DFF7B /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				52387159205660A8005DFF7B /* Category */,
+				5238715A205660A8005DFF7B /* Library */,
+				5238715B205660A8005DFF7B /* Network */,
+				5238715C205660A8005DFF7B /* Resource */,
+				5238715D205660A8005DFF7B /* ThirdParty */,
 			);
 			path = Others;
 			sourceTree = "<group>";
 		};
-		523871462056594B005DFF7B /* Views */ = {
+		52387159205660A8005DFF7B /* Category */ = {
 			isa = PBXGroup;
 			children = (
 			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		5238715A205660A8005DFF7B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		5238715B205660A8005DFF7B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5238715C205660A8005DFF7B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5238715D205660A8005DFF7B /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		5238715E205660A8005DFF7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5238715F205660A8005DFF7B /* Enteprise */,
+				52387160205660A8005DFF7B /* Home */,
+				52387161205660A8005DFF7B /* Live */,
+				52387162205660A8005DFF7B /* Personal */,
+				52387163205660A8005DFF7B /* Public */,
+			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5238715F205660A8005DFF7B /* Enteprise */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enteprise;
+			sourceTree = "<group>";
+		};
+		52387160205660A8005DFF7B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		52387161205660A8005DFF7B /* Live */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		52387162205660A8005DFF7B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		52387163205660A8005DFF7B /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Public;
 			sourceTree = "<group>";
 		};
 		5B2B363818CC211F00328C15 = {
@@ -341,7 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				522B080F1FE7733C00B02F9B /* xlxt.entitlements */,
-				523871412056594B005DFF7B /* class */,
+				5238714C205660A8005DFF7B /* class */,
 				5BFE5F4E1C5FB19300DD194D /* weixin */,
 				5BFE5F4C1C5E77D900DD194D /* Order.m */,
 				5BFE5F441C5E77C900DD194D /* base64.m */,
@@ -494,7 +638,7 @@
 				TargetAttributes = {
 					5B2B364018CC211F00328C15 = {
 						DevelopmentTeam = 96XEXU6Z2S;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -830,7 +974,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = xlxt/xlxt.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96XEXU6Z2S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -863,8 +1008,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glaer.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "10243dbc-b533-4ac5-b1a5-0af4a7a832f3";
+				PROVISIONING_PROFILE_SPECIFIER = xlxt2018;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -884,7 +1029,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = xlxt/xlxt.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96XEXU6Z2S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -918,8 +1064,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.glaer.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "10243dbc-b533-4ac5-b1a5-0af4a7a832f3";
+				PROVISIONING_PROFILE_SPECIFIER = xlxt2018;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;

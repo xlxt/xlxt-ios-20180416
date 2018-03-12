@@ -14,7 +14,7 @@
 {
     UIAlertView* mAlert;
     
-    //IOS内购使用
+    //IOS内购使用123
     NSString* IOS_PRODUCTID;
     NSString* IOS_PRODUCTCOIN;
 }
