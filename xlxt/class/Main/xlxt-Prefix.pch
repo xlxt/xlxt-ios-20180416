@@ -1,0 +1,48 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+#import <YYKit/YYKit.h>
+#import "Masonry.h"
+#import "Tools.h"
+#import "BaseWebUtils.h"
+#define kScreenW    ([UIScreen mainScreen].bounds.size.width)
+#define kScreenH    ([UIScreen mainScreen].bounds.size.height)
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#define navigationbar [UIColor colorWithHexString:@"#54b2f2"]
+#define WhiteColor [UIColor whiteColor]
+#define BlackColor [UIColor blackColor]
+#define ClearColor [UIColor clearColor]
+#define GrayColor [UIColor grayColor];
+#define MainColor [UIColor colorWithRed:254.0/255 green:49.0/255 blue:32.0/255 alpha:1]
+
+#define MainGrayColor [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]
+#define LYNavi(vc) [[MainNavigationViewController alloc]initWithRootViewController:vc]
+
+#define kBaseLine(a) (CGFloat)a * SCREEN_WIDTH / 375.0
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define COLORA(R,G,B,A) [UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:A]
+#define COLORAHex(H) [UIColor colorWithHexString:(H)]
+#define COLOR(R,G,B) COLORA(R,G,B,1.0)
+#define FontSet(f) [UIFont systemFontOfSize:f]
+
+/** 边框*/
+#define ViewBorder(View,Width,Color)\
+\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
