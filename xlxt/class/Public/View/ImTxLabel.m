@@ -31,6 +31,7 @@
     imageoffset = imagef;
     space = spaces;
     color = colors;
+    self.attrifont = textfont;
 }
 -(void)SetImage:(NSString *)imagename setText:(NSString *)text 
 {
@@ -40,7 +41,8 @@
     
     self.attri = [[NSMutableAttributedString alloc] initWithString:text];
 
-    self.attri.font =FontSet(textfont);
+    self.attri.font =FontSet(self.attrifont);
+    self.attri.color = color;
     //可以将要插入的图片作为特殊字符处理
     //需要使用 YYAnimatedImageView 控件，直接使用UIImage添加无效。
     
@@ -88,6 +90,25 @@
     
     [self setHeight:introHeight+h];
     self.fixheight = introHeight+h;
+}
+
+-(void)SetText:(NSString *)text SetImageArr:(NSArray *)imagename
+{
+    self.attri = [[NSMutableAttributedString alloc] initWithString:text];
+    self.attri.font =FontSet(imagefont);
+    self.attri.color = color;
+    
+    for (NSString *image in imagename) {
+        YYAnimatedImageView *imageView2= [[YYAnimatedImageView alloc] initWithImage:[UIImage imageNamed:image]];
+        imageView2.frame = CGRectMake(0, 0, imagefont, imagefont);
+        NSMutableAttributedString *attachText2= [NSMutableAttributedString attachmentStringWithContent:imageView2 contentMode:UIViewContentModeScaleAspectFit attachmentSize:imageView2.frame.size alignToFont:[UIFont systemFontOfSize:imageoffset] alignment:YYTextVerticalAlignmentCenter];
+        //插入到结尾
+        [self.attri appendAttributedString:attachText2];
+    }
+    //用label的attributedText属性来使用富文本
+    //   self.attributedText = self.attri;
+    
+    [self SetTextAndGetHeight:self.attri Font:imagefont LineSpacing:space];
 }
 
 @end

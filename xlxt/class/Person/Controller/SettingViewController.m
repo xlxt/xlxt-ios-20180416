@@ -39,6 +39,8 @@
     SettingArr = @[@{@"title":@"修改密码",@"icon":@"我的课程"},@{@"title":@"个人信息编辑",@"icon":@"我的订单"},@{@"title":@"微信账号",@"icon":@"考试中心"},@{@"title":@"解除绑定企业",@"icon":@"账户中心"},@{@"title":@"关于杏林",@"icon":@"问答中心"}];
     
     [self SetableView];
+    
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "PCView.h"
 #import "PCCell.h"
+#import "PersonModel.h"
 @interface PersonCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *LineArr1;
@@ -27,6 +28,31 @@
 @end
 
 @implementation PersonCenterViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    LineArr1 = @[@{@"title":@"消息中心",@"icon":@"消息中心"},@{@"title":@"我的课程",@"icon":@"我的课程"},@{@"title":@"考试中心",@"icon":@"考试中心"}];
+    LineArr2 = @[@{@"title":@"我的订单",@"icon":@"我的订单"},@{@"title":@"账户中心",@"icon":@"账户中心"},@{@"title":@"问答中心",@"icon":@"问答中心"}];
+    LineArr3 = @[@{@"title":@"退出当前账户",@"icon":@"退出当前账户"}];
+    
+
+    
+    
+    self.navigationItem.rightBarButtonItem = self.SettingItem;
+    self.navigationItem.title = @"个人中心";
+    
+    [self StableView];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [BaseWebUtils Get:WWWURL(@"/Member/GetMemberInfo") andParams:nil andCallback:^(id obj) {
+        PersonModel *pmodel = [PersonModel modelWithDictionary:JsonObj(obj)];
+        self.tbh.DataDic = pmodel;
+    //    NSLog(@"登录个人中心  %@",JsonObj(obj));
+    }];
+}
 //懒加载
 -(UIBarButtonItem *)SettingItem{
     if (!_SettingItem) {
@@ -43,7 +69,11 @@
         _StableView.dataSource = self;
         _StableView.separatorStyle = NO;
         _StableView.backgroundColor = WhiteColor;
-        
+        _StableView.tableHeaderView = self.tbh;
+        _StableView.tableFooterView.backgroundColor = GrayColor;
+        _StableView.sectionFooterHeight = 10;
+        [_StableView registerClass:[PCCell class] forCellReuseIdentifier:@"cell"];
+
         [self.view addSubview:_StableView];
     }
     return _StableView;
@@ -69,20 +99,7 @@
     [self.navigationController pushViewController:sv animated:YES];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = self.SettingItem;
-    self.navigationItem.title = @"个人中心";
-    LineArr1 = @[@{@"title":@"消息中心",@"icon":@"消息中心"},@{@"title":@"我的课程",@"icon":@"我的课程"},@{@"title":@"考试中心",@"icon":@"考试中心"}];
-    LineArr2 = @[@{@"title":@"我的订单",@"icon":@"我的订单"},@{@"title":@"账户中心",@"icon":@"账户中心"},@{@"title":@"问答中心",@"icon":@"问答中心"}];
-    LineArr3 = @[@{@"title":@"退出当前账户",@"icon":@"退出当前账户"}];
-    
-    [self StableView];
-    self.StableView.tableHeaderView = self.tbh;
-    self.StableView.tableFooterView.backgroundColor = GrayColor;
-    self.StableView.sectionFooterHeight = 10;
-     [self.StableView registerClass:[PCCell class] forCellReuseIdentifier:@"cell"];
-}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

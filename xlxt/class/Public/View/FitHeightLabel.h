@@ -15,4 +15,5 @@
 }
 @property(nonatomic,strong)NSMutableAttributedString *introText;
 -(void)SetTextAndGetHeight:(NSString *)mess Font:(CGFloat)font LineSpacing:(CGFloat)space;
+-(void)sethtmlstring:(NSString *)mess Font:(CGFloat)font LineSpacing:(CGFloat)space;
 @end

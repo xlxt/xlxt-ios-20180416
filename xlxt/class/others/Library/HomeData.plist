@@ -11,6 +11,8 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -21,6 +23,8 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -31,6 +35,8 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -41,6 +47,8 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -51,6 +59,8 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -61,16 +71,20 @@
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>疾病用药</string>
 		<key>listcount</key>
-		<integer>6</integer>
+		<integer>2</integer>
 		<key>cellname</key>
 		<string></string>
 		<key>ClickURL</key>
 		<string></string>
+		<key>columnCount</key>
+		<integer>2</integer>
 	</dict>
 </array>
 </plist>

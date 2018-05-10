@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ImTxLabel.h"
+#import "UniModel.h"
 @interface EnterHeaderView : UIView
 @property(nonatomic,strong)UIImageView *headerview;
 @property(nonatomic,strong)ImTxLabel *titlelb;
 @property(nonatomic,strong)ImTxLabel *introducelb;
-@property(nonatomic,strong)NSDictionary *headdic;
+@property(nonatomic,strong)UniModel *headdic;
 @end

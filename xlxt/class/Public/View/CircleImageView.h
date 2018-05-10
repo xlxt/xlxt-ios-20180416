@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CircleImageView : UIImageView
+@property(nonatomic,strong)NSString *url;
 -(instancetype)initWithFrame:(CGRect)frame AndUrl:(NSString*)imageUrl;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "FitHeightLabel.h"
-
+#import "NSAttributedString+TransHtml.h"
 @implementation FitHeightLabel
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -24,6 +24,19 @@
     self.introText = [[NSMutableAttributedString alloc] initWithString:mess];
     self.introText.font =FontSet(font);
     self.introText.color = BlackColor;
+    self.introText.lineSpacing = space;
+    self.attributedText = self.introText;
+    CGSize introSize = CGSizeMake(w-10, CGFLOAT_MAX);
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:introSize text:self.introText];
+    self.textLayout = layout;
+    CGFloat introHeight = layout.textBoundingSize.height;
+    
+    [self setHeight:introHeight+h];
+}
+-(void)sethtmlstring:(NSMutableAttributedString *)mess Font:(CGFloat)font LineSpacing:(CGFloat)space
+{
+    self.introText = mess;
+    self.introText.font =FontSet(font);
     self.introText.lineSpacing = space;
     self.attributedText = self.introText;
     CGSize introSize = CGSizeMake(w-10, CGFLOAT_MAX);

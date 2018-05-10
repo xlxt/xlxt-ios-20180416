@@ -20,7 +20,9 @@
 }
 @property (nonatomic,strong)NSMutableAttributedString *attri;
 @property (nonatomic,assign)CGFloat fixheight;
+@property (nonatomic,assign)CGFloat attrifont;
 -(void)SetImageFont:(CGFloat)imf TextFont:(CGFloat)tf imageoffset:(CGFloat)imagef lineSpace:(CGFloat)spaces color:(UIColor*)colors;
 -(void)SetImage:(NSString *)imagename setText:(NSString *)text;
 -(void)SetText:(NSString *)text SetImage:(NSString *)imagename;
+-(void)SetText:(NSString *)text SetImageArr:(NSArray *)imagename;
 @end

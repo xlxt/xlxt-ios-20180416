@@ -27,6 +27,9 @@
     return self;
 }
 
-
+-(void)setUrl:(NSString *)url{
+    _url = url;
+    [self setImageURL:[NSURL URLWithString:url]];
+}
 
 @end

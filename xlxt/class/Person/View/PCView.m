@@ -7,6 +7,7 @@
 //
 
 #import "PCView.h"
+#import "NSNumber+date.h"
 @implementation PCView
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -89,9 +90,29 @@
 }
 
 
--(void)setDataDic:(NSDictionary *)DataDic
+-(void)setDataDic:(PersonModel *)DataDic
 {
     _DataDic = DataDic;
+    
+    self.coursecount.attributedText =[self transferAttri:[NSString stringWithFormat:@"%@\n课程数",_DataDic.StudyCourse]];
+    self.core.attributedText =  [self transferAttri:[NSString stringWithFormat:@"%@\n总积分",_DataDic.CoinCount]];
+    self.totaltime.attributedText =[self transferAttri:[NSString stringWithFormat:@"%@\n课程数",[NSNumber transfersecond:[_DataDic.cpStudyTime intValue]]]];
+    self.name.text = _DataDic.Name;
+    self.headerimage.url = ImgUrl(_DataDic.HeadImg);
+    
 }
+-(NSMutableAttributedString*)transferAttri:(NSString *)str
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    attributedString.color = WhiteColor;
+    attributedString.font = FontSet(16);
+    // 设置文字居中
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    [paragraphStyle setLineSpacing:10];
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [str length])];
 
+    return attributedString;
+}
 @end

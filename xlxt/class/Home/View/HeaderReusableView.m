@@ -30,13 +30,16 @@
         [self.moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         
         [self.moreBtn setTitle:@"更多>" forState: UIControlStateNormal];
-        [self.moreBtn addTarget:self action:@selector(Btnaction0:) forControlEvents:UIControlEventTouchDragInside];
+        [self.moreBtn addTarget:self action:@selector(Btnaction0:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.moreBtn];
         
     }
     return self;
 }
-
+-(void)Btnaction0:(UIButton*)btn
+{
+    [self.delegate push:self.sectiontag];
+}
 
 
 @end

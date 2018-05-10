@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "LosingPasswordVC.h"
 #import "RegisterViewController.h"
+#import "LoginModel.h"
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *headIV;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTF;
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *FoundPSBtn;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) NSUserDefaults *defaults;
 @end
 
 @implementation LoginViewController
@@ -40,6 +42,8 @@
                                              selector:@selector(keyboardWillHide1:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+//    self.defaults = [NSUserDefaults standardUserDefaults];
 
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -63,7 +67,7 @@
         [UIView beginAnimations:@"ResizeView" context:nil];
         [UIView setAnimationDuration:animationDuration];
         
-        self.view.frame = CGRectMake(0, -y+64, self.view.frame.size.width, self.view.frame.size.height);
+        self.view.frame = CGRectMake(0, -y+120, self.view.frame.size.width, self.view.frame.size.height);
         [UIView commitAnimations];
 
 }
@@ -108,66 +112,44 @@
 {
     
     
-//    NSDictionary *paradic = @{
-//                              @"UserName":self.usernameTF.text,
-//                              @"Password":self.passwordTF.text
-//                              };
-//    
-//    [BaseWebUtils Post:@"http://sso.xlxt.net/UserSSO/UserSSOAppLogin" andParams:paradic andCallback:^(id obj) {
-//        
-//        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingAllowFragments error:nil];
-//        
-//
-//        NSString * base64String = dic[@"Key"];
-//
-//        if (base64String) {
-//            
-//    
-//        NSData *data = [[NSData alloc]initWithBase64EncodedString:base64String options:0];
-//        
-//      NSString *destring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//     //   NSLog(@"%@", decodedString); // foo
-//      //  NSLog(@"输出登录后的信息：%@",destring);
-//            
-//            NSArray *StrArr = [destring componentsSeparatedByString:@"-"];
-//        //    NSLog(@"输出key:%@",StrArr[0]);
-//            [self saveCookiesWithKey:StrArr[0]];
-//            [self addAlertWithTitle:@"登录成功"];
-//      }else
-//      {
-//        //NSString *errorstr = dic;
-//      //    NSLog(@"输出错误信息：%@",dic[@"error"]);
-//          [self addAlertWithTitle:dic[@"error"]];
-//      }
-//        
-//    }];
+    NSDictionary *paradic = @{
+                              @"UserName":self.usernameTF.text,
+                              @"Password":self.passwordTF.text
+                              };
+    
+    
+    NSString *str = @"/UserSSO/UserSSOAppLogin";
+    [BaseWebUtils Post:SSOUrl(str) andParams:paradic andCallback:^(id obj) {
+        
+
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingAllowFragments error:nil];
+//     NSLog(@"输出登录后的信息：%@ ",dic);
+     LoginModel *loginModel = [LoginModel modelWithDictionary:dic];
+        if ([loginModel.error isEqualToString:@""]) {
+
+            [loginModel TakeUseridAndkeyWithdestring:loginModel.url];
+            [self addAlertWithTitle:@"登录成功"];
+      }else
+      {
+          [self addAlertWithTitle:loginModel.error];
+      }
+        
+    }];
 }
--(void)saveCookiesWithKey:(NSString*)loginkey {
-    // 创建一个可变字典存放cookie
-    NSMutableDictionary *fromappDict = [NSMutableDictionary dictionary];
-    [fromappDict setObject:@"Key" forKey:NSHTTPCookieName];
-    [fromappDict setObject:loginkey forKey:NSHTTPCookieValue];
-    // kDomain是公司app网址
-  //  [fromappDict setObject:kDomain forKey:NSHTTPCookieDomain];
-   // [fromappDict setObject:kDomain forKey:NSHTTPCookieOriginURL];
-    [fromappDict setObject:@"/" forKey:NSHTTPCookiePath];
-    [fromappDict setObject:@"0" forKey:NSHTTPCookieVersion];
-    
-    // 将可变字典转化为cookie
-    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:fromappDict];
-    
-    // 获取cookieStorage
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    
-    // 存储cookie
-    [cookieStorage setCookie:cookie];
-}
+
 
 -(void)addAlertWithTitle:(NSString*)title
     {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            if([title isEqualToString:@"登录成功"]){
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        }];
         [alert addAction:sure];
         [self presentViewController:alert animated:YES completion:nil];
         

@@ -8,7 +8,7 @@
 
 #import "HomeNaviVC.h"
 
-@interface HomeNaviVC ()
+@interface HomeNaviVC ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) UIImageView *lineView;
 @end
 
@@ -20,12 +20,19 @@
 }
 -(void)SetupOutForm
 {
-    
-  [self.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:WhiteColor}];
 
-
+     self.navigationBar.tintColor = WhiteColor;
+     self.delegate = self;
 }
-
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count > 0) {
+        
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:animated];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

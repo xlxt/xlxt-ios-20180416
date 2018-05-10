@@ -7,7 +7,7 @@
 //
 
 #import "AudioViewCell.h"
-
+#import "NSAttributedString+TransHtml.h"
 @implementation AudioViewCell
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -85,5 +85,14 @@
         }];
     }
     return _start;
+}
+-(void)setAumodel:(AudioModel *)aumodel
+{
+    _aumodel = aumodel;
+    [self.headiv setImageURL:[NSURL URLWithString:ImgUrl(_aumodel.course.Img)]];
+    self.titleLB.text =_aumodel.course.Name;
+    NSString *browsestr=[NSString stringWithFormat:@"%ld人浏览",(long)_aumodel.course.BrowseNum];
+    NSString *str =[NSString stringWithFormat:@"%ld",(long)_aumodel.course.BrowseNum];
+    self.browsecount.attributedText = [NSAttributedString ChangeColor:[UIColor orangeColor] AtRange: [browsestr rangeOfString:str]  String:browsestr];
 }
 @end

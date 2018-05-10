@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CourseModel.h"
 @interface CourseCoCell : UICollectionViewCell
 @property (assign)NSInteger mode;
 @property (nonatomic)UIImageView *imageview;
 @property (nonatomic)YYLabel *titleLabel;
 @property (nonatomic)YYLabel *priseLabel;
 @property (nonatomic)YYLabel *purchaseLabel;
-@property (nonatomic,strong)NSDictionary *datas;
+@property (nonatomic,strong)CourseModel *datas;
 @end

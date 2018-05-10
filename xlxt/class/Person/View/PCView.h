@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CircleImageView.h"
 #import "FitHeightLabel.h"
+#import "PersonModel.h"
 @interface PCView : UIView
 @property ( nonatomic) CircleImageView *headerimage;
 @property ( nonatomic) UILabel *name;
 @property ( nonatomic) FitHeightLabel *core;
 @property ( nonatomic) FitHeightLabel *coursecount;
 @property ( nonatomic) FitHeightLabel *totaltime;
-@property(strong,nonatomic) NSDictionary *DataDic;
+@property(strong,nonatomic) PersonModel *DataDic;
 @end

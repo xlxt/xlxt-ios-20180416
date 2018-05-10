@@ -7,10 +7,7 @@
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS //简化宏，mas_** -> **
 #import "BannerButton.h"
-@interface BannerButton ()
-@property(nonatomic,strong)UIImageView *buttonIV;
-@property(nonatomic,strong)UILabel *nameLB;
-@end
+
 
 @implementation BannerButton
 
@@ -41,10 +38,13 @@
         _buttonIV.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_buttonIV];
         [_buttonIV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(weakself).with.offset(15);
-            make.right.equalTo(weakself).with.offset(-15);
-            make.top.equalTo(weakself).with.offset(14);
-            make.bottom.equalTo(weakself.nameLB).with.offset(-20);
+
+                make.left.equalTo(weakself).with.offset(15);
+                make.right.equalTo(weakself).with.offset(-15);
+                make.top.equalTo(weakself).with.offset(14);
+                make.bottom.equalTo(weakself.nameLB).with.offset(-20);
+
+
         }];
 
     }
@@ -70,5 +70,24 @@
         }];
     }
     return _nameLB;
+}
+-(void)setMode:(NSInteger)mode
+{
+    _mode = mode;
+     WS(weakself);
+    if (self.mode == 0) {
+        
+    }else if (self.mode == 1){
+        [self.buttonIV mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+                make.left.equalTo(weakself).with.offset(12);
+                make.right.equalTo(weakself).with.offset(-12);
+                make.top.equalTo(weakself).with.offset(9);
+                make.bottom.equalTo(weakself.nameLB).with.offset(-12);
+        }];
+        self.nameLB.font = FontSet(14);
+
+    }
+
 }
 @end

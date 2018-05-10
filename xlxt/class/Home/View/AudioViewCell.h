@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CircleImageView.h"
+#import "AudioModel.h"
 @interface AudioViewCell : UICollectionViewCell
 @property(nonatomic,strong)CircleImageView *headiv;
 @property(nonatomic,strong)YYLabel *titleLB;
 @property(nonatomic,strong)YYLabel *browsecount;
 @property(nonatomic,strong)UIImageView *start;
+@property(nonatomic,strong)AudioModel *aumodel;
 @end

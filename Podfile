@@ -6,6 +6,7 @@ pod 'AFNetworking'
 pod 'SDWebImage'
 pod 'Masonry'
 pod 'YYKit'
+pod 'MJRefresh', '3.1.8'
   target 'xlxtTests' do
     inherit! :search_paths
 

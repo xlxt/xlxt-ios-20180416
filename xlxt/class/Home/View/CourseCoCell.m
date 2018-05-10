@@ -105,4 +105,13 @@
     }
     return _purchaseLabel;
 }
+-(void)setDatas:(CourseModel *)datas
+{
+    _datas = datas;
+    [self.imageview setImageURL:[NSURL URLWithString:ImgUrl(_datas.Img)]];
+    self.titleLabel.text = _datas.Name;
+    self.priseLabel.text = [NSString stringWithFormat:@"¥%ld",(long)_datas.Price];
+    self.purchaseLabel.text =[NSString stringWithFormat:@"%ld人浏览",(long)_datas.BrowseNum];
+    
+}
 @end

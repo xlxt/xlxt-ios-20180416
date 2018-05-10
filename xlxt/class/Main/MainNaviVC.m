@@ -8,7 +8,7 @@
 
 #import "MainNaviVC.h"
 
-@interface MainNaviVC ()
+@interface MainNaviVC ()<UINavigationControllerDelegate>
 {
     UIView *NaviView;
 }
@@ -35,7 +35,7 @@
    
      self.navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationBar];
      self.navBarHairlineImageView.hidden = YES;
-    
+     self.delegate = self;
 }
 -(void)SetupOutForm
 {
@@ -47,6 +47,14 @@
      @{NSFontAttributeName:FontSet(19),
        
        NSForegroundColorAttributeName:WhiteColor}];
+}
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count > 0) {
+        
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:animated];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

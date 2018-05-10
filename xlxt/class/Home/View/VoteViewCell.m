@@ -7,9 +7,11 @@
 //
 
 #import "VoteViewCell.h"
-
+#import "NSNumber+date.h"
+#import "NSAttributedString+TransHtml.h"
+#import "FitHeightLabel.h"
 @implementation VoteViewCell
-
+FitHeightLabel *flabel;
 - (void)awakeFromNib {
     [super awakeFromNib];
 
@@ -19,15 +21,40 @@
     self = [super initWithFrame:frame];
     if (self) {
         self = [[NSBundle mainBundle]loadNibNamed:@"VoteViewCell" owner:self options:nil].lastObject;
-
-//        self.backgroundView.layer.shadowOffset=CGSizeMake(0,0);//往x方向偏移0，y方向偏移0
-//
-//        self.backgroundView.layer.shadowOpacity=0.3;//设置阴影透明度
-//
-//        self.backgroundView.layer.shadowColor= navigationbar.CGColor;//设置阴影颜色
-//
-//        self.backgroundView.layer.shadowRadius=8;//设置阴影半径
+        
+        self.JoinBtn.layer.cornerRadius = 16.0;
+        self.JoinBtn.layer.masksToBounds = YES;
+        
+        flabel = [[FitHeightLabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(self.VoteIV.frame), kScreenW-40, 20)];
+        flabel.numberOfLines = 0;
+        
+        [self addSubview:flabel];
+        
     }
     return self;
 }
+
+-(void)setVModel:(VoteModel *)VModel{
+    _VModel = VModel;
+    [self.VoteIV setImageURL:[NSURL URLWithString:_VModel.HearderImg]];
+    self.Title.text =_VModel.Title;
+    self.TimeLabel.text =[NSNumber transferdate:[_VModel.BeginDate substringWithRange:NSMakeRange(6,13)]];
+    [self.VoteIV setImageURL:[NSURL URLWithString:MURL(@"/images/Index/imgback.png")]];
+    NSString *introduce =  [_VModel.Introduce componentsSeparatedByString:@"【活动名称】"][1];
+    NSString *introduce2 =  [introduce componentsSeparatedByString:@"【活动奖励】"][0];
+    ;
+    NSMutableAttributedString *text1 = [NSAttributedString strToAttriWithStr:[introduce2 filterHTML:introduce2]].mutableCopy;
+    NSMutableAttributedString *text2 = [[NSMutableAttributedString alloc] initWithString:@" ＞查看更多"];
+
+    [text2 setTextHighlightRange:NSMakeRange(0, 6)
+                          color:[UIColor blueColor]
+                   backgroundColor:[UIColor whiteColor]
+                         tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                             NSLog(@"查看更多");
+                         }];
+      [text1 appendAttributedString:text2];
+    flabel.attributedText = text1;
+   [flabel sethtmlstring:text1 Font:13 LineSpacing:3];
+}
+
 @end

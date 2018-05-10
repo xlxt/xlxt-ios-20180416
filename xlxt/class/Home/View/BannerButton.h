@@ -11,4 +11,7 @@
 @interface BannerButton : UIButton
 @property(nonatomic)NSDictionary *dic;
 @property (nonatomic,copy)NSString *url;
+@property(nonatomic,strong)UIImageView *buttonIV;
+@property(nonatomic,strong)UILabel *nameLB;
+@property(nonatomic,assign)NSInteger mode;
 @end

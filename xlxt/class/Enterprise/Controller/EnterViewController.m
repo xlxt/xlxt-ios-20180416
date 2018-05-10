@@ -11,6 +11,8 @@
 #import "ImTxLabel.h"
 #import "EnterHeaderView.h"
 #import "EnterChildView.h"
+#import "UniModel.h"
+#import "PersonModel.h"
 @interface EnterViewController ()
 {
     FitHeightLabel *fl;
@@ -31,9 +33,6 @@
     [super viewDidLoad];
     self.navigationItem.title = @"企业大学";
     self.view.backgroundColor = COLORAHex(@"#f7f8fC");
-
-    //网络请求
-    [self WebDataRequest];
     dataarray = @[@"企业课程",@"内部课程",@"企业试题",@"学习任务",@"企业文库",@"企业公告",@"学习地图",@"比赛中心",@"企业商城",@"杏林说",@"员工带教",@"更多",];
 
 
@@ -53,6 +52,12 @@
     [self.view addSubview:self.myScrollView];
     
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //网络请求
+    [self WebDataRequest];
 }
 //lazy load
 
@@ -114,7 +119,31 @@
 }
 -(void)WebDataRequest
 {
+    NSString *stuffurl =WWWURL(@"/Member/IsStaff");
+    NSString *memberurl=WWWURL(@"/Member/GetMemberInfo");
+    NSString *enterurl= WWWURL(@"/Enterprise/GetEnterpriseInfo");
     
+    [BaseWebUtils Get:stuffurl andParams:nil andCallback:^(id obj) {
+        NSLog(@"输出企业大学的信息：%@",JsonObj(obj));
+        
+        
+    }];
+//    [BaseWebUtils Get:memberurl andParams:nil andCallback:^(id obj) {
+//         PersonModel *pmodel = [PersonModel modelWithDictionary:JsonObj(obj)];
+//        
+//        
+//    }];
+    [BaseWebUtils Get:enterurl andParams:nil andCallback:^(id obj) {
+
+        NSArray *enterarr =JsonObj(obj);
+        if(enterarr.count == 0)
+            return ;
+        self.enterhv.headdic = [UniModel modelWithDictionary:enterarr[0]];
+        
+        CGRect refreshFrame = self.childview.frame;
+        refreshFrame.origin.y =CGRectGetHeight(self.enterhv.frame);
+        self.childview.frame = refreshFrame;
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

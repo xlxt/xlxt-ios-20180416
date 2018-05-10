@@ -6,14 +6,15 @@
 //  Copyright © 2018年 Beijing Glaer Network Technology Co., Ltd. All rights reserved.
 
 #import "HomeHeaderView.h"
-#import "SQBannarView.h"
+#import "bannerModel.h"
 #import "BannerButton.h"
 #import "SGAdvertScrollView.h"
+#import "advertmodel.h"
 @interface HomeHeaderView ()<SGAdvertScrollViewDelegate>
 {
     CGFloat totalHeight;
 }
-@property (nonatomic,strong)SQBannarView *bannerView;
+
 @property (nonatomic,strong)SGAdvertScrollView *advertScrollView;
 @end
 @implementation HomeHeaderView
@@ -26,9 +27,12 @@
         
         //添加banner
         [self addSubview:self.bannerView];
-        
+    
         [self.bannerView imageViewClick:^(SQBannarView * _Nonnull barnerview, NSInteger index) {
-            NSLog(@"点击图片%ld",(long)index);
+          
+            
+            [self.delegate BannerClick:index];
+            
         }];
         
         //添加banner下方按钮
@@ -39,6 +43,8 @@
         
         //添加正式分区头
         [self addHeaderofsection];
+        
+         
     }
     return self;
 }
@@ -116,13 +122,14 @@
     [morebtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     [morebtn setTitle:@"更多>" forState: UIControlStateNormal];
-    [morebtn addTarget:self action:@selector(Btnaction0:) forControlEvents:UIControlEventTouchDragInside];
+    [morebtn addTarget:self action:@selector(Btnaction0:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:morebtn];
     
 }
 -(void)Btnaction0:(BannerButton *)btn1
 {
-      NSLog(@"点击图片%ld",(long)btn1.tag);
+   
+    [self.delegate ImageBtnClick:btn1.tag];
 }
 -(SQBannarView *)bannerView
 {
@@ -137,14 +144,44 @@
         }
         
         _bannerView.items = imageViews;
+        
     }
     return _bannerView;
 }
 
 - (void)advertScrollView:(SGAdvertScrollView *)advertScrollView didSelectedItemAtIndex:(NSInteger)index {
-    NSLog(@"点击广告位%f",totalHeight);
+  
+    [self.delegate AdverViewClick:index];
 }
 
+-(void)setBannerArray:(NSArray *)BannerArray
+{
+    _BannerArray = BannerArray;
+    NSMutableArray *imageViews = [NSMutableArray array];
+    for (NSInteger i=0; i<4; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"adv%ld.png",i+1]];
+        [imageViews addObject:image];
+    }
+    
+    for (bannerModel *banner in _BannerArray) {
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:ImgUrl(banner.ImgUrl)]]];
+        [imageViews addObject:image];
+    }
+    self.bannerView.items = imageViews;
+    [self.bannerView.myCollectionView reloadData];
+    
+}
+-(void)setAdverArray:(NSArray *)AdverArray
+{
+    _AdverArray = AdverArray;
+    NSMutableArray *marr = [NSMutableArray array];
+    for (advertmodel *advert in _AdverArray) {
+        NSString *titlestr =advert.Title;
+        [marr addObject:titlestr];
+    }
+    self.advertScrollView.titles = marr.copy;
+    
+}
 - (void)updateFocusIfNeeded {
     
 }
